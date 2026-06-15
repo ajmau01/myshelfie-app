@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Guide — myShelfie</title>
+  <meta name="description" content="Getting started with myShelfie — bring your books in, log how you actually read, and make the most of the Portrait and your Circle." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    :root {
+      --cream: #F5F0E8; --surface: #FBF8F2; --charcoal: #1E1C18;
+      --terra: #C75B2C; --terra-deep: #A34520; --mustard: #D9A830; --olive: #4A6741; --mid: #7A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 2px solid var(--charcoal); }
+    nav .wrap { max-width: 940px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; text-decoration: none; color: var(--charcoal); }
+    .brand em { color: var(--terra); font-style: italic; }
+    .back-link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .back-link:hover { color: var(--terra); }
+
+    header.doc { padding: 64px 0 24px; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.1rem); line-height: 1.05; }
+    .doc-lede { color: var(--mid); font-size: 1.12rem; margin-top: 18px; max-width: 60ch; }
+
+    .toc { margin: 32px 0 8px; border: 2px solid var(--charcoal); box-shadow: 6px 6px 0 var(--charcoal); background: var(--surface); padding: 22px 24px; }
+    .toc h4 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--mid); margin-bottom: 12px; }
+    .toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 28px; }
+    @media (max-width: 600px){ .toc ol { columns: 1; } }
+    .toc li { margin-bottom: 7px; }
+    .toc a { color: var(--charcoal); text-decoration: none; border-bottom: 1px solid transparent; }
+    .toc a:hover { color: var(--terra); border-color: var(--terra); }
+
+    section.step { padding: 40px 0 8px; }
+    .rule { border: none; border-top: 2px solid var(--charcoal); }
+    h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.12; margin-bottom: 4px; scroll-margin-top: 80px; }
+    h2 .n { font-style: italic; color: var(--terra); margin-right: 10px; }
+    section.step p { margin: 14px 0; color: #34302a; }
+    section.step ul { margin: 12px 0 14px; padding-left: 22px; list-style: square; }
+    section.step li { margin-bottom: 9px; }
+    strong { font-weight: 700; }
+    .tip { border-left: 4px solid var(--mustard); background: var(--surface); padding: 14px 18px; margin: 16px 0; font-size: 0.97rem; color: #34302a; }
+    .tip b { color: var(--terra-deep); }
+    a.inline { color: var(--terra); font-weight: 700; text-decoration: none; border-bottom: 2px dashed var(--terra); }
+    a.inline:hover { color: var(--charcoal); border-color: var(--charcoal); }
+
+    footer { border-top: 2px solid var(--charcoal); padding: 28px 0 64px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--mid); flex-wrap: wrap; gap: 12px; }
+    footer .brand-foot { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--charcoal); }
+    .footlinks a { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="index.html">my<em>Shelfie</em></a>
+      <a class="back-link" href="index.html">&larr; Back to myShelfie</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="doc">
+      <div class="kicker">User Guide · the basics</div>
+      <h1>Getting the most out of myShelfie</h1>
+      <p class="doc-lede">A short, growing guide. myShelfie is built to capture how you <em>actually</em> read — across formats and sources — so the more honestly you log, the more your library tells you back.</p>
+
+      <div class="toc">
+        <h4>In this guide</h4>
+        <ol>
+          <li><a href="#install">Install &amp; sign in</a></li>
+          <li><a href="#start">Start your library</a></li>
+          <li><a href="#add">Add a book</a></li>
+          <li><a href="#format">Format &amp; source</a></li>
+          <li><a href="#loans">Library loans</a></li>
+          <li><a href="#status">Status, ratings &amp; DNF</a></li>
+          <li><a href="#portrait">Your Portrait</a></li>
+          <li><a href="#circle">Your Circle</a></li>
+          <li><a href="#feedback">Send feedback</a></li>
+        </ol>
+      </div>
+    </header>
+
+    <section class="step" id="install">
+      <h2><span class="n">01</span>Install &amp; sign in</h2>
+      <p>myShelfie is in private testing. You'll get an invite link — on <strong>iOS</strong> it opens in TestFlight; on <strong>Android</strong> it comes through Firebase App Distribution (you may need the App Tester app the first time). Once installed, sign in with <strong>Apple, Google, or email + password</strong>. Your library syncs across every device you sign in on.</p>
+    </section>
+
+    <hr class="rule" />
+    <section class="step" id="start">
+      <h2><span class="n">02</span>Start your library</h2>
+      <p>A brand-new library opens to a <strong>Start your library</strong> chooser with three ways in:</p>
+      <ul>
+        <li><strong>Import from Libby</strong> — export your Libby Timeline as a CSV and bring your borrowing history straight in.</li>
+        <li><strong>Import from Goodreads</strong> — the classic CSV export, mapped into your shelves.</li>
+        <li><strong>Add a book</strong> — search and add one at a time to get going immediately.</li>
+      </ul>
+      <div class="tip"><b>Tip:</b> imports are the fastest way to feel the app — your Portrait starts taking shape the moment there are books to read it from.</div>
+    </section>
+
+    <hr class="rule" />
+    <section class="step" id="add">
+      <h2><span class="n">03</span>Add a book</h2>
+      <p>Tap <strong>Add a Book</strong> to search by title or author, or use the <strong>barcode scanner</strong> to scan a cover's ISBN. Pick the match, and myShelfie pulls the cover and details. If a book's already in your library, it'll tell you rather than make a duplicate.</p>
+    </section>
+
+    <hr class="rule" />
+    <section class="step" id="format">
+      <h2><span class="n">04</span>Format &amp; source — the heart of it</h2>
+      <p>Every book carries <strong>how you read it</strong> (physical, library, audiobook, ebook) and <strong>where it came from</strong> as a pair. A single book can hold more than one — listened to the first half on Audible, finished the back half in paperback. Add a format from the book's detail screen, and set its source (including <strong>Libby or Hoopla</strong> for borrowed ebooks and audiobooks).</p>
+      <p>You can also record <strong>provenance</strong> — how the book <em>found</em> you: a friend's recommendation, a book club, browsing, or an in-app pick. It's part of your portrait, not just a tag.</p>
+    </section>
+
+    <hr class="rule" />
+    <section class="step" id="loans">
+      <h2><span class="n">05</span>Library loans &amp; due dates</h2>
+      <p>A library-format copy can carry a <strong>due date</strong>. Tap the loan on the book's detail screen to set or edit it. myShelfie surfaces active loans on your <strong>Reading</strong> (Today) screen and gives a gentle nudge when one's overdue — and once you mark a book <strong>Read</strong>, it stops nagging you to return it.</p>
+    </section>
+
+    <hr class="rule" />
+    <section class="step" id="status">
+      <h2><span class="n">06</span>Status, ratings &amp; DNF</h2>
+      <p>Move a book through <strong>To Read → Currently Reading → Read</strong>, give it a star rating, add notes and tags. And when a book isn't working, mark it <strong>DNF (Did Not Finish) with a reason</strong> — that's first-class here. Not finishing is part of your reading story, and it makes recommendations smarter, not poorer.</p>
+      <div class="tip"><b>Why ratings matter:</b> your Portrait and AI picks are built from the books you've <b>rated or finished</b> — so rating as you go is what brings it to life.</div>
+    </section>
+
+    <hr class="rule" />
+    <section class="step" id="portrait">
+      <h2><span class="n">07</span>Your Portrait</h2>
+      <p>Open <strong>Discover</strong> and <strong>Portrait</strong> to see your reading life reflected back: a taste profile that reads like a mirror (here's what your reading reveals about you), a year-by-year reading narrative, an "on this day" memory of books you finished on this date in past years, and explained AI picks that tell you <em>why</em> each one surfaced.</p>
+    </section>
+
+    <hr class="rule" />
+    <section class="step" id="circle">
+      <h2><span class="n">08</span>Your Circle</h2>
+      <p>The Circle is small and trusted by design — invite a few readers you actually swap books with. You'll see where your tastes overlap and can pass picks back and forth. No follower counts, no public reviews — just honest portraits between people who trust each other.</p>
+    </section>
+
+    <hr class="rule" />
+    <section class="step" id="feedback">
+      <h2><span class="n">09</span>Send feedback</h2>
+      <p>This is what testing is for. <strong>Shake your phone</strong> anywhere in the app to open the reporter — it captures a screenshot of exactly what you're looking at (including any open sheet) so you don't have to describe it. Send a <strong>bug report</strong> when something's off, and tell us what you were trying to do. Your reports go straight to the maker.</p>
+      <p>Have a question or a problem the reporter can't reach? Email <a class="inline" href="mailto:ajmauer@gmail.com">ajmauer@gmail.com</a>.</p>
+    </section>
+
+    <footer>
+      <span class="brand-foot">myShelfie</span>
+      <span class="footlinks"><a href="index.html">Home</a><a href="privacy.html">Privacy</a></span>
+      <span>Guide · evolving with the app</span>
+    </footer>
+  </div>
+</body>
+</html>

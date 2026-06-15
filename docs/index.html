@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>myShelfie — the personal library for the way you actually read</title>
+  <meta name="description" content="myShelfie is the single place a reader keeps every book that has ever been part of them — physical, library loan, audiobook, ebook. Owned, borrowed, returned, listened to on a road trip. The experience is what counts, not ownership. Now in private testing." />
+  <meta property="og:title" content="myShelfie — the personal library for the way you actually read" />
+  <meta property="og:description" content="Every book that's ever been part of you — however it came, however you read it. Now recruiting testers." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+
+    :root {
+      --cream:      #F5F0E8;
+      --cream-deep: #ECE4D4;
+      --surface:    #FBF8F2;
+      --charcoal:   #1E1C18;
+      --terra:      #C75B2C;
+      --terra-deep: #A34520;
+      --mustard:    #D9A830;
+      --olive:      #4A6741;
+      --mid:        #7A7060;
+      --rule:       #1E1C1820;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 940px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--cream);
+      border-bottom: 2px solid var(--charcoal);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; }
+    .brand em { color: var(--terra); font-style: italic; }
+    .navlinks { display: flex; gap: 26px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; }
+    .navlinks a { color: var(--mid); text-decoration: none; transition: color 0.15s; }
+    .navlinks a:hover { color: var(--terra); }
+    @media (max-width: 680px) { .navlinks { display: none; } }
+
+    /* ── Hero ── */
+    header { padding: 88px 0 64px; }
+    .eyebrow { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--terra); margin-bottom: 22px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.6rem, 6vw, 4.3rem); line-height: 1.04; letter-spacing: -0.02em; max-width: 16ch; }
+    h1 em { font-style: italic; color: var(--terra); }
+    .lede { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--mid); max-width: 54ch; margin-top: 28px; }
+    .lede strong { color: var(--charcoal); font-weight: 500; }
+
+    /* spine motif */
+    .spines { display: flex; gap: 6px; margin: 44px 0 8px; height: 92px; align-items: flex-end; }
+    .spine { width: 26px; border: 2px solid var(--charcoal); box-shadow: 4px 4px 0 var(--charcoal); }
+    .spine:nth-child(1){ height: 78%; background: var(--terra); }
+    .spine:nth-child(2){ height: 100%; background: var(--mustard); }
+    .spine:nth-child(3){ height: 64%; background: var(--olive); }
+    .spine:nth-child(4){ height: 88%; background: var(--cream-deep); }
+    .spine:nth-child(5){ height: 72%; background: var(--terra-deep); }
+    .spine:nth-child(6){ height: 94%; background: var(--charcoal); }
+    .spine:nth-child(7){ height: 58%; background: var(--mustard); }
+    .spine:nth-child(8){ height: 82%; background: var(--olive); }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+    .btn {
+      display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em; text-decoration: none;
+      padding: 16px 30px; border: 2px solid var(--charcoal); cursor: pointer; transition: transform 0.12s, box-shadow 0.12s;
+    }
+    .btn-primary { background: var(--terra); color: var(--cream); box-shadow: 5px 5px 0 var(--charcoal); }
+    .btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--charcoal); }
+    .btn-ghost { background: var(--surface); color: var(--charcoal); box-shadow: 5px 5px 0 var(--charcoal); }
+    .btn-ghost:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--charcoal); }
+
+    /* ── Section rhythm (Drowned Lands: generous whitespace + rule dividers) ── */
+    section { padding: 64px 0; }
+    .rule { border: none; border-top: 2px solid var(--charcoal); max-width: 940px; margin: 0 auto; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 2.6rem); line-height: 1.1; letter-spacing: -0.01em; max-width: 22ch; }
+    .section-lede { color: var(--mid); max-width: 58ch; margin-top: 16px; font-size: 1.08rem; }
+
+    /* ── Three layers ── */
+    .layers { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 40px; }
+    @media (min-width: 760px) { .layers { grid-template-columns: repeat(3, 1fr); } }
+    .layer { background: var(--surface); border: 2px solid var(--charcoal); box-shadow: 6px 6px 0 var(--charcoal); padding: 28px 24px; }
+    .layer .num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--terra); margin-bottom: 10px; }
+    .layer h3 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 12px; }
+    .layer p { color: var(--mid); font-size: 0.98rem; line-height: 1.6; }
+    .layer p strong { color: var(--charcoal); font-weight: 500; }
+
+    /* ── Difference list ── */
+    .diffs { margin-top: 36px; display: grid; gap: 2px; border: 2px solid var(--charcoal); box-shadow: 6px 6px 0 var(--charcoal); }
+    .diff { background: var(--surface); padding: 22px 24px; display: flex; gap: 20px; align-items: baseline; }
+    .diff + .diff { border-top: 2px solid var(--charcoal); }
+    .diff .tag { font-family: 'Playfair Display', serif; font-style: italic; color: var(--terra); white-space: nowrap; min-width: 150px; font-size: 1.05rem; }
+    .diff .body { color: var(--mid); }
+    .diff .body strong { color: var(--charcoal); font-weight: 500; }
+    @media (max-width: 640px) { .diff { flex-direction: column; gap: 6px; } .diff .tag { min-width: 0; } }
+
+    /* ── Testing CTA band ── */
+    .band { background: var(--charcoal); color: var(--cream); }
+    .band .wrap { padding: 72px 24px; }
+    .band h2 { color: var(--cream); }
+    .band .section-lede { color: #CFC7B6; }
+    .band .who { margin-top: 28px; display: grid; gap: 10px; max-width: 60ch; }
+    .band .who li { list-style: none; padding-left: 26px; position: relative; color: #E7E0D2; }
+    .band .who li::before { content: '—'; position: absolute; left: 0; color: var(--mustard); }
+    .band .btn-primary { margin-top: 36px; box-shadow: 5px 5px 0 var(--terra-deep); }
+    .band .btn-primary:hover { box-shadow: 7px 7px 0 var(--terra-deep); }
+    .band .fine { margin-top: 18px; font-size: 0.85rem; color: #9A917F; }
+
+    /* ── Footer ── */
+    footer { padding: 48px 0 64px; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+    .footlinks { display: flex; gap: 22px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; }
+    .footlinks a { color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); padding-bottom: 2px; }
+    .footlinks a:hover { color: var(--terra); }
+    .foot-meta { font-size: 0.78rem; color: var(--mid); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <div class="brand">my<em>Shelfie</em></div>
+      <div class="navlinks">
+        <a href="#story">The App</a>
+        <a href="#layers">Three Layers</a>
+        <a href="guide.html">Guide</a>
+        <a href="#testing">Join Testing</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">Now in private testing · iOS &amp; Android</div>
+      <h1>The personal library for the way you <em>actually</em> read.</h1>
+      <div class="spines" aria-hidden="true">
+        <div class="spine"></div><div class="spine"></div><div class="spine"></div><div class="spine"></div>
+        <div class="spine"></div><div class="spine"></div><div class="spine"></div><div class="spine"></div>
+      </div>
+      <p class="lede">Every book that has ever been part of you — <strong>however it came, however you read it.</strong> Physical, library loan, audiobook, ebook. Owned, borrowed, returned, listened to on a road trip. The experience is what counts, not ownership.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#testing">Join the testing program</a>
+        <a class="btn btn-ghost" href="guide.html">Read the guide</a>
+      </div>
+    </div>
+  </header>
+
+  <hr class="rule" />
+
+  <section id="story">
+    <div class="wrap">
+      <div class="kicker">Who it's for</div>
+      <h2>The multi-format reader who's never found their app.</h2>
+      <p class="section-lede">You read a hardcover on the nightstand, borrow three things on Libby, and finish an audiobook on the drive home. No tracker has ever captured that — they make you pretend you read one way. myShelfie is built for the reader who lives across formats and sources, and wants a record that tells the truth.</p>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section id="layers">
+    <div class="wrap">
+      <div class="kicker">Built in three layers</div>
+      <h2>The Record, the Portrait, and a small trusted Circle.</h2>
+      <div class="layers">
+        <div class="layer">
+          <div class="num">Layer 01</div>
+          <h3>The Record</h3>
+          <p>Capture every book, every format, every source — and <strong>how it found you</strong>: a friend's rec, a book club, browsing, the app's own pick. Multiple formats per book. Library loans with due dates. <strong>DNF with a reason</strong>, because not finishing is part of the story too.</p>
+        </div>
+        <div class="layer">
+          <div class="num">Layer 02</div>
+          <h3>The Portrait</h3>
+          <p>Your reading life, reflected back. A taste profile that's a <strong>mirror, not a search filter</strong> — here's what your reading reveals about you. A year-by-year narrative, an "on this day" memory, the shape of how you read.</p>
+        </div>
+        <div class="layer">
+          <div class="num">Layer 03</div>
+          <h3>The Circle</h3>
+          <p>A small, trusted graph — three to eight people you actually read alongside. <strong>No follower counts, no public reviews.</strong> Honest portraits between people who trust each other turn into the best book discovery engine there is.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section id="different">
+    <div class="wrap">
+      <div class="kicker">What makes it different</div>
+      <h2>First-class for the things other apps flatten.</h2>
+      <div class="diffs">
+        <div class="diff"><div class="tag">Format &amp; source</div><div class="body"><strong>How you read it and where it came from</strong> — a pair on every book. Listened to the first half, read the second. Own it and borrowed it.</div></div>
+        <div class="diff"><div class="tag">Provenance</div><div class="body">How a book <strong>found</strong> you is part of the portrait — friend rec, book club, browsing, an in-app pick.</div></div>
+        <div class="diff"><div class="tag">Library loans</div><div class="body">Due dates, loan source, a gentle return prompt — <strong>not just a "library" tag.</strong></div></div>
+        <div class="diff"><div class="tag">DNF, honestly</div><div class="body">"Did not finish," with a reason. It feeds the portrait instead of disappearing.</div></div>
+        <div class="diff"><div class="tag">Visual-first</div><div class="body">Cover art facing out, like a bookstore display — <strong>your shelf, the way you'd want to see it.</strong></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testing" class="band">
+    <div class="wrap">
+      <div class="kicker" style="color: var(--mustard);">The testing program</div>
+      <h2>Come see how it feels — and help shape it.</h2>
+      <p class="section-lede">myShelfie is in private testing on iOS (TestFlight) and Android. It's early, it's real, and the people testing it now are shaping what it becomes. If you read across formats and want a library that finally fits, there's a seat for you.</p>
+      <ul class="who">
+        <li>Bring your books in fast — import from Libby or Goodreads, or just add as you go.</li>
+        <li>Shake the phone to send feedback the moment something feels off (or sparks an idea).</li>
+        <li>Small group, direct line to the maker — your reports genuinely move the roadmap.</li>
+      </ul>
+      <a class="btn btn-primary" href="mailto:ajmauer@gmail.com?subject=myShelfie%20tester%20invite&amp;body=Hi%20—%20I'd%20like%20to%20test%20myShelfie.%20My%20platform%20is%20(iOS%2FAndroid)%20and%20the%20email%20to%20invite%20is%3A">Request a tester invite</a>
+      <p class="fine">Email <strong>ajmauer@gmail.com</strong> with your platform (iOS or Android) and the email address to invite.</p>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <footer>
+    <div class="wrap">
+      <div class="footlinks">
+        <a href="guide.html">User Guide</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="#testing">Join Testing</a>
+      </div>
+      <div class="foot-meta">myShelfie · Est. 2026 · the personal ephemeral library</div>
+    </div>
+  </footer>
+</body>
+</html>
