@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why myShelfie Exists — Margin Notes</title>
+  <meta name="description" content="The origin story: the itch we couldn't get past, the idea of an ephemeral library, and what myShelfie is actually building." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    :root {
+      --cream: #F5F0E8; --surface: #FBF8F2; --charcoal: #1E1C18;
+      --terra: #C75B2C; --terra-deep: #A34520; --mustard: #D9A830; --olive: #4A6741; --mid: #7A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 2px solid var(--charcoal); }
+    nav .wrap { max-width: 940px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; text-decoration: none; color: var(--charcoal); }
+    .brand em { color: var(--terra); font-style: italic; }
+    .back-link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .back-link:hover { color: var(--terra); }
+
+    header.doc { padding: 56px 0 8px; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    .kicker .num { font-family: 'Playfair Display', serif; font-style: italic; margin-right: 8px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.06; }
+    .doc-lede { color: var(--mid); font-size: 1.1rem; margin-top: 16px; max-width: 60ch; }
+
+    article { padding: 8px 0 8px; }
+    article > p { margin: 20px 0; color: #34302a; }
+    article h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.14; margin: 44px 0 4px; }
+    article ul, article ol { margin: 16px 0 18px; padding-left: 24px; }
+    article ul { list-style: square; }
+    article li { margin-bottom: 11px; color: #34302a; }
+    article li strong, article p strong { font-weight: 700; }
+    article em { font-style: italic; }
+    .first { font-size: 1.06rem; }
+
+    blockquote { border-left: 4px solid var(--mustard); background: var(--surface); padding: 18px 22px; margin: 24px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.18rem; line-height: 1.4; color: var(--charcoal); }
+
+    .signoff { margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--terra); }
+
+    .post-foot-nav { margin-top: 48px; border-top: 2px solid var(--charcoal); padding-top: 24px; }
+    .post-foot-nav a { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); }
+
+    footer { border-top: 2px solid var(--charcoal); padding: 28px 0 64px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--mid); flex-wrap: wrap; gap: 12px; }
+    footer .brand-foot { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--charcoal); }
+    .footlinks a { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="index.html">my<em>Shelfie</em></a>
+      <a class="back-link" href="notes.html">&larr; All notes</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="doc">
+      <div class="kicker"><span class="num">01</span> Margin Notes · the origin story</div>
+      <h1>Why myShelfie Exists</h1>
+      <p class="doc-lede">The origin story, and what we're actually building.</p>
+    </header>
+
+    <article>
+      <p class="first">Hi - and thank you for being here this early. If you're reading this, you're one of a handful of people kicking the tires on something that's still very much wet paint. That's not a disclaimer, it's the whole point: we'd rather build this <em>with</em> a few readers than unveil it to a crowd. So this little corner of the site is where we'll think out loud - what we're fixing, why we made a particular call, how a feature actually works under the hood. Pull up a chair.</p>
+
+      <p>Let me start with where this came from, because it'll explain almost every decision you'll run into.</p>
+
+      <h2>Where it started</h2>
+      <p>Here's a moment that probably sounds familiar. Someone recommends a book. You're pretty sure you've already read it... or did you start the audiobook and drift off? Was it the library copy you returned months ago, or is it still on the nightstand? You open Goodreads. Then Libby. Then you check Audible. And you <em>still</em> aren't certain.</p>
+      <p>That's the thing we couldn't get past. Reading life is scattered across half a dozen apps that each see one sliver of it. The library loan lives in Libby. The commute listen lives in Audible. The paperback a friend pressed into your hands - the one you read in two days and gave away - lives nowhere at all. None of these apps were built for the way a lot of us actually read now: a little bit physical, a little bit borrowed, a little bit listened-to, all at once.</p>
+      <p>And almost every app makes the same quiet assumption: that a book you <em>own</em> is somehow more real than one you borrowed and returned. We think that's backwards.</p>
+
+      <h2>The idea: an ephemeral library</h2>
+      <p>The books that have passed through your life are still part of you, even when they're not on a shelf anymore. <em>Especially</em> when they're not. The library copy you returned five years ago. The road-trip audiobook. The one you didn't finish - and why you didn't finish it says something too.</p>
+      <p>So myShelfie isn't really a tracker. It's closer to a <strong>self-portrait, told through books</strong>. (The name was always a pun, and it leans on the <em>selfie</em> half more than the <em>shelf</em> half - it's about you, not your inventory.) The experience is what counts: how a book came to you, how you read it, what it left behind. Format and source aren't the <em>definition</em> of a book - they're the texture of how it found you.</p>
+      <p>That's why you'll see us treat some things as first-class that other apps shrug at:</p>
+      <ul>
+        <li><strong>How you read it <em>and</em> where it came from</strong> - not just "audiobook," but "audiobook, borrowed from Libby."</li>
+        <li><strong>One book, many ways</strong> - listened to the first half, read the second? Own it <em>and</em> have it on Audible? That's one book with a richer story, not a duplicate.</li>
+        <li><strong>Library loans as real things</strong> - due dates, what you've saved by borrowing, a gentle nudge before it's due.</li>
+        <li><strong>Did Not Finish, with a reason</strong> - the books you put down are part of the portrait too. No guilt. Just honesty.</li>
+        <li><strong>Provenance</strong> - "a friend recommended this," "found it browsing," "book club." How a book <em>found</em> you is worth remembering.</li>
+      </ul>
+
+      <h2>Where this is going (the short version)</h2>
+      <p>We're building it in layers, and we're being stubborn about the order:</p>
+      <ol>
+        <li><strong>The Record</strong> - every book that's been part of you, however it came, however you read it. This is the foundation, and it'll always be free.</li>
+        <li><strong>The Portrait</strong> - what that record <em>reveals</em> once the app has watched your reading life for a while. Not a stats dashboard - more like a mirror. "Here's what your reading says about you."</li>
+        <li><strong>A small, trusted circle</strong> - eventually, sharing your portrait with a few people whose taste you actually trust, to find your next great read. Small and real - no follower counts, no performance, no strangers reviewing at you.</li>
+      </ol>
+      <p>That third layer only works if the first two are honest, which is why we're not rushing it.</p>
+
+      <h2>What this means for you, right now</h2>
+      <p>You're testing the early layers - the Record, and the first pieces of the Portrait. Things will be rough in spots. When something looks off, <strong>shake your phone</strong> to send a report (it really does come straight to us). And when we fix something worth explaining, you'll find the story here - like the next note, where I'll get into how we taught the app to make sense of your Libby history, borrow dates and all.</p>
+
+      <p>Thanks for reading the way you do. It's exactly the kind of reading life we built this for.</p>
+
+      <p class="signoff">-Andy</p>
+
+      <div class="post-foot-nav">
+        <a href="note-libby-dates.html">Next: Teaching myShelfie to read your Libby history &rarr;</a>
+      </div>
+    </article>
+
+    <footer>
+      <span class="brand-foot">myShelfie</span>
+      <span class="footlinks"><a href="notes.html">All notes</a><a href="guide.html">Guide</a><a href="privacy.html">Privacy</a></span>
+      <span>Margin Notes</span>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teaching myShelfie to Read Your Libby History — Margin Notes</title>
+  <meta name="description" content="What Libby's export tells us, what it doesn't, and the call we made about read dates - plus the 30-second re-import to fill yours in." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    :root {
+      --cream: #F5F0E8; --surface: #FBF8F2; --charcoal: #1E1C18;
+      --terra: #C75B2C; --terra-deep: #A34520; --mustard: #D9A830; --olive: #4A6741; --mid: #7A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 2px solid var(--charcoal); }
+    nav .wrap { max-width: 940px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; text-decoration: none; color: var(--charcoal); }
+    .brand em { color: var(--terra); font-style: italic; }
+    .back-link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .back-link:hover { color: var(--terra); }
+
+    header.doc { padding: 56px 0 8px; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    .kicker .num { font-family: 'Playfair Display', serif; font-style: italic; margin-right: 8px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.06; }
+    .doc-lede { color: var(--mid); font-size: 1.1rem; margin-top: 16px; max-width: 60ch; }
+
+    article { padding: 8px 0 8px; }
+    article > p { margin: 20px 0; color: #34302a; }
+    article h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.14; margin: 44px 0 4px; }
+    article ul, article ol { margin: 16px 0 18px; padding-left: 24px; }
+    article ul { list-style: square; }
+    article ol li { margin-bottom: 11px; }
+    article li { margin-bottom: 11px; color: #34302a; }
+    article li strong, article p strong { font-weight: 700; }
+    article em { font-style: italic; }
+    .first { font-size: 1.06rem; }
+
+    blockquote { border-left: 4px solid var(--mustard); background: var(--surface); padding: 18px 22px; margin: 24px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.18rem; line-height: 1.4; color: var(--charcoal); }
+    .tip { border-left: 4px solid var(--mustard); background: var(--surface); padding: 16px 20px; margin: 24px 0; font-size: 1rem; line-height: 1.6; color: #34302a; }
+    .tip b { color: var(--terra-deep); }
+
+    .signoff { margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--terra); }
+
+    .post-foot-nav { margin-top: 48px; border-top: 2px solid var(--charcoal); padding-top: 24px; }
+    .post-foot-nav a { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); }
+
+    footer { border-top: 2px solid var(--charcoal); padding: 28px 0 64px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--mid); flex-wrap: wrap; gap: 12px; }
+    footer .brand-foot { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--charcoal); }
+    .footlinks a { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="index.html">my<em>Shelfie</em></a>
+      <a class="back-link" href="notes.html">&larr; All notes</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="doc">
+      <div class="kicker"><span class="num">02</span> Margin Notes · the build</div>
+      <h1>Teaching myShelfie to Read Your Libby History</h1>
+      <p class="doc-lede">What Libby tells us, what it doesn't, and the call we made.</p>
+    </header>
+
+    <article>
+      <p class="first">A tester - thank you, you know who you are - imported their Libby history and noticed something: the books came in, but the reading timeline stayed empty. No dates. For an app whose whole pitch is <em>your reading life over time</em>, that's a real problem. So we dug in. Here's what was going on, the judgment call we made, and the thirty seconds it'll take you to get those dates back.</p>
+
+      <h2>What Libby actually hands us</h2>
+      <p>When you export your Libby timeline, you get a tidy little file with a row for every book you've borrowed. Each row knows the title, the author, the format, your library - and a date.</p>
+      <p>But here's the catch: that date is the day you <em>borrowed</em> the book. Libby doesn't record the day you <em>finished</em> it. It can't, really - it's a lending app, not a reading journal. It knows when a book showed up in your hands and when it went back. What happened in between is your business.</p>
+      <p>So we had a gap. We knew <em>when each book entered your life</em>, but not <em>when you read it</em>. And an empty date means an empty timeline.</p>
+
+      <h2>The call we made</h2>
+      <p>We could have left those books dateless and made you fill in every single one by hand. Hard pass - nobody's doing that for two hundred books.</p>
+      <p>So we asked a simpler question: for a library book, how far off is the borrow date from the read date, really? And the honest answer is: <strong>for most of us, not far at all.</strong> You borrow a book because you're about to read it. Most library borrows get finished, and they get finished <em>near</em> when you checked them out - because the clock is ticking and the due date is real.</p>
+      <p>We're not chasing precision here. The reading timeline mostly cares about the <em>year</em>, sometimes the season. And the borrow date gets that right almost every time. So that's the rule now:</p>
+      <blockquote>When you import from Libby and tell us "I've read these," we'll use each book's borrow date as an approximate read date.</blockquote>
+      <p>Is it perfect? No. Sometimes you borrow a book, read three chapters, decide it's not for you, and send it back. That happens - and when it does, just mark that one <strong>Did Not Finish</strong> after importing. We'd rather get you 95% of the way there automatically and let you fix the handful of exceptions than make you date every book by hand. (And honestly, the books you put down are part of your portrait too - so marking them DNF isn't busywork, it's signal.)</p>
+
+      <h2>How to get your dates (about 30 seconds)</h2>
+      <p>If you imported from Libby before this update and your timeline looks bare, here's the fix once the new build is on your phone:</p>
+      <ol>
+        <li>Open the import menu and choose <strong>Import from Libby</strong> again.</li>
+        <li>Pick the <strong>same</strong> timeline file you exported before.</li>
+        <li>Make sure the mode is set to <strong>"Mark as Read."</strong></li>
+        <li>Import.</li>
+      </ol>
+      <p>That's it. Books already in your library will quietly get their read dates filled in - and <strong>nothing gets duplicated.</strong> We match each incoming book against what's already on your shelves, so a re-import tops up the missing pieces instead of creating a second copy of everything. Run it twice if you're nervous; the second run does nothing.</p>
+      <p>Then take a look at your reading timeline. It should finally have some shape to it - your borrowing history, laid out across the years.</p>
+
+      <div class="tip"><b>One small habit, worth it:</b> everything imports marked <strong>Read</strong> - that's the default we want - so the one thing left to you is the exceptions. If you remember borrowing a book and not finishing it, go mark it <strong>DNF</strong> (with a reason, if one comes to mind). It's quick, and it matters more than it looks: your picks and your reading Portrait are built from what you actually read <em>and</em> what you didn't. An honestly-marked DNF makes your recommendations sharper and your portrait truer - while a "read" that was really a "gave up at chapter three" quietly skews both. So when a title jogs your memory, follow up.</div>
+
+      <h2>The small print we actually mean</h2>
+      <p>We made a point of <em>not</em> pretending the borrow date is a precise finish date. It's an approximation, we tell you it's an approximation, and you stay in control of the exceptions. That's the deal we want with everything in here: get you the useful thing automatically, never fake certainty we don't have, and leave the honest edits in your hands.</p>
+      <p>More soon. Keep shaking that phone.</p>
+
+      <p class="signoff">-Andy</p>
+
+      <div class="post-foot-nav">
+        <a href="notes.html">&larr; All notes</a>
+      </div>
+    </article>
+
+    <footer>
+      <span class="brand-foot">myShelfie</span>
+      <span class="footlinks"><a href="notes.html">All notes</a><a href="guide.html">Guide</a><a href="import.html">Importing</a><a href="privacy.html">Privacy</a></span>
+      <span>Margin Notes</span>
+    </footer>
+  </div>
+</body>
+</html>
