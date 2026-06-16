@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Importing your library — myShelfie</title>
+  <meta name="description" content="Step-by-step: export your library from Goodreads or your Timeline from Libby as a CSV, and import it into myShelfie in a couple of minutes." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    :root {
+      --cream: #F5F0E8; --surface: #FBF8F2; --charcoal: #1E1C18;
+      --terra: #C75B2C; --terra-deep: #A34520; --mustard: #D9A830; --olive: #4A6741; --mid: #7A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 2px solid var(--charcoal); }
+    nav .wrap { max-width: 940px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; text-decoration: none; color: var(--charcoal); }
+    .brand em { color: var(--terra); font-style: italic; }
+    .back-link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .back-link:hover { color: var(--terra); }
+
+    header.doc { padding: 64px 0 24px; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.1rem); line-height: 1.05; }
+    .doc-lede { color: var(--mid); font-size: 1.12rem; margin-top: 18px; max-width: 60ch; }
+
+    .rule { border: none; border-top: 2px solid var(--charcoal); }
+    section.src { padding: 44px 0 8px; }
+    .src-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.12; scroll-margin-top: 80px; }
+    .src-tagline { color: var(--mid); margin: 12px 0 20px; max-width: 60ch; }
+
+    ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 8px 0 18px; border: 2px solid var(--charcoal); box-shadow: 6px 6px 0 var(--charcoal); background: var(--surface); }
+    ol.steps li { counter-increment: step; padding: 18px 22px 18px 64px; position: relative; color: #34302a; }
+    ol.steps li + li { border-top: 2px solid var(--charcoal); }
+    ol.steps li::before { content: counter(step); position: absolute; left: 18px; top: 16px; width: 28px; height: 28px; background: var(--terra); color: var(--cream); font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; }
+    ol.steps li strong { color: var(--charcoal); font-weight: 700; }
+    ol.steps li em { color: var(--mid); font-style: italic; }
+
+    .gets { font-size: 0.97rem; color: var(--mid); margin: 4px 0 8px; }
+    .gets strong { color: var(--terra-deep); font-weight: 500; }
+
+    /* Libby choice callout */
+    .choice { background: var(--charcoal); color: var(--cream); border: 2px solid var(--charcoal); box-shadow: 8px 8px 0 var(--mustard); padding: 32px 30px; margin: 28px 0 8px; }
+    .choice h3 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; color: var(--cream); margin-bottom: 12px; }
+    .choice p { color: #E7E0D2; margin: 12px 0; }
+    .choice .opt { padding-left: 26px; position: relative; margin: 10px 0; color: #E7E0D2; }
+    .choice .opt::before { content: '—'; position: absolute; left: 0; color: var(--mustard); }
+    .choice .opt b { color: var(--mustard); font-weight: 700; }
+    .choice .calm { font-size: 0.92rem; color: #9A917F; margin-top: 14px; }
+
+    .goodtoknow { margin: 8px 0 12px; padding-left: 22px; list-style: square; }
+    .goodtoknow li { margin-bottom: 10px; color: #34302a; }
+    .goodtoknow li strong { color: var(--charcoal); }
+    a.inline { color: var(--terra); font-weight: 700; text-decoration: none; border-bottom: 2px dashed var(--terra); }
+    a.inline:hover { color: var(--charcoal); border-color: var(--charcoal); }
+
+    footer { border-top: 2px solid var(--charcoal); padding: 28px 0 64px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--mid); flex-wrap: wrap; gap: 12px; }
+    footer .brand-foot { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--charcoal); }
+    .footlinks a { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="index.html">my<em>Shelfie</em></a>
+      <a class="back-link" href="guide.html">&larr; Back to the Guide</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="doc">
+      <div class="kicker">User Guide · Importing</div>
+      <h1>Bring your reading life in</h1>
+      <p class="doc-lede">The fastest way to feel myShelfie is to import what you've already tracked. Both paths take a couple of minutes, all from your phone — export a CSV from the service, then hand it to myShelfie.</p>
+    </header>
+
+    <hr class="rule" />
+    <section class="src" id="goodreads">
+      <div class="src-head"><h2>From Goodreads</h2></div>
+      <p class="src-tagline">Goodreads exports your whole library — statuses, ratings, dates, and shelves — as a single CSV.</p>
+      <ol class="steps">
+        <li>Open <strong>Goodreads in your phone's browser</strong> <em>(the export lives on the website, not the app)</em>.</li>
+        <li>Go to <strong>My Books → Import/Export</strong>.</li>
+        <li>Tap <strong>"Export Library"</strong> and save the CSV to your device.</li>
+        <li>In myShelfie, open the menu → <strong>Import from Goodreads (CSV)</strong> → <strong>Select CSV File</strong>, and pick it.</li>
+      </ol>
+      <p class="gets">What comes in: <strong>read / currently-reading / to-read</strong> status, your <strong>star ratings</strong>, <strong>date read</strong>, and your shelves.</p>
+    </section>
+
+    <hr class="rule" />
+    <section class="src" id="libby">
+      <div class="src-head"><h2>From Libby</h2></div>
+      <p class="src-tagline">Libby's Timeline is your borrowing history. Export it to backfill everything you've read through the library.</p>
+      <ol class="steps">
+        <li>Open <strong>Libby</strong> and tap your <strong>Shelf</strong>.</li>
+        <li>Go to <strong>History → Actions → Export Timeline</strong>.</li>
+        <li>Select <strong>CSV</strong> and save the file to your device.</li>
+        <li>In myShelfie, open the menu → <strong>Import from Libby (Timeline CSV)</strong> → <strong>Select CSV File</strong>, and pick it.</li>
+      </ol>
+
+      <div class="choice">
+        <h3>One choice to make</h3>
+        <p>Libby records that you <em>borrowed</em> a book — not whether you finished it. So on the import preview, you decide how to treat your borrows:</p>
+        <p class="opt"><b>Sort later</b> (the safe default) — they land on a <b>"Libby — To Sort"</b> shelf, so you can move each one once you decide how you actually read it.</p>
+        <p class="opt"><b>Mark as read</b> — if your Timeline is mostly books you finished, bring them straight in as Read.</p>
+        <p class="calm">Either way nothing's locked in — you can change any book's status afterward.</p>
+      </div>
+    </section>
+
+    <hr class="rule" />
+    <section class="src" id="goodtoknow">
+      <div class="src-head"><h2>Good to know</h2></div>
+      <ul class="goodtoknow">
+        <li><strong>No duplicates.</strong> Anything already in your library is skipped automatically — so re-importing, or importing from both Goodreads and Libby, is always safe.</li>
+        <li><strong>Imports are additive.</strong> They grow your library; they never replace what's already there.</li>
+        <li><strong>It's all on your phone.</strong> The CSV just needs to be somewhere your phone's file picker can reach — Files, Downloads, or wherever you saved it.</li>
+        <li><strong>Not on those services?</strong> Any tool that exports a Goodreads-compatible CSV works too — and you can always just add books as you go.</li>
+      </ul>
+      <p style="color: var(--mid); margin-top: 8px;">Back to the full <a class="inline" href="guide.html">User Guide</a>.</p>
+    </section>
+
+    <footer>
+      <span class="brand-foot">myShelfie</span>
+      <span class="footlinks"><a href="index.html">Home</a><a href="guide.html">Guide</a><a href="privacy.html">Privacy</a></span>
+      <span>Importing · part of the guide</span>
+    </footer>
+  </div>
+</body>
+</html>
