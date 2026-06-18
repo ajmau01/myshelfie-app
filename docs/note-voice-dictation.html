@@ -88,11 +88,6 @@
 
       <blockquote>Dictating a note is like writing in the margins of a physical book - immediate, personal, and keeping you in the flow of the text.</blockquote>
 
-      <h2>The Engineering Behind the Voice</h2>
-      <p>Voice transcription on mobile applications presents a classic problem: how to hook into native OS speech frameworks without making the app dependent on brittle linking configurations that crash if a driver is missing.</p>
-      <p>To solve this, we implemented a custom hook `useVoiceDictation.ts` that dynamically loads `expo-speech-recognition` inside a guarded try/catch block. If the library isn't linked, or if the device lacks speech-to-text hardware entirely, `isAvailable` evaluates to `false` and the microphone button is quietly hidden from the UI. This ensures the app remains stable across older devices.</p>
-      <p>During code review, we also optimized React's rendering lifecycle. The speech recognition events trigger frequent updates as you speak. To prevent rendering lag or race conditions, we refactored the transcription callback to handle the debounced auto-save timer directly inside the state updater function `setLocalNotes((prev) => ...)`. This ensures the saving side-effect remains pure and is called exactly once with the final, assembled text.</p>
-
       <div class="tip"><b>Silence Detection:</b> You don't have to worry about hitting "stop" when you're done speaking. The engine monitors speech pauses and automatically terminates recording, restoring the button's default cream styling.</div>
 
       <h2>Telling the Complete Reading Story</h2>

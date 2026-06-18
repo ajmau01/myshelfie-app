@@ -98,10 +98,6 @@
 
       <blockquote>By registering myShelfie as a native sharing handler, we bridge the gap between library discovery and personal organization.</blockquote>
 
-      <h2>Under the Hood: Share Intents</h2>
-      <p>To implement this on mobile devices, we integrated native share intent listeners (`react-native-receive-sharing-intent`). When you select myShelfie in a sharing menu, the operating system packages the web link as a data payload and delivers it to our app's bootstrap handler.</p>
-      <p>We then run the incoming string through specialized parser expressions. If we detect an Overdrive link, we extract the ID and hit the Libby service API. If we detect a Hoopla link, we extract the title query and use the Google Books service to resolve metadata. If the book is already in your library, the confirmation modal warns you instead of creating a duplicate copy. If the user dismisses the modal, the active intent is cleared so that the next share behaves cleanly.</p>
-
       <div class="tip"><b>No Duplicate Guarantee:</b> We compare incoming shared titles against what's already on your shelves. Re-sharing a book you already own will safely trigger an "Already in Library" warning, protecting your reading timeline from cluttered duplicate entries.</div>
 
       <h2>Focusing on Frictionless Inputs</h2>
