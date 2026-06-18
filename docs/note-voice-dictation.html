@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speaking Your Notes into the Margin — Marginalia</title>
+  <meta name="description" content="Sometimes typing out a long quote or reflection on a glass keyboard breaks the reading flow. Here is our new hands-free voice dictation feature - and how it works under the hood." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    :root {
+      --cream: #F5F0E8; --surface: #FBF8F2; --charcoal: #1E1C18;
+      --terra: #C75B2C; --terra-deep: #A34520; --mustard: #D9A830; --olive: #4A6741; --mid: #7A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 2px solid var(--charcoal); }
+    nav .wrap { max-width: 940px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; text-decoration: none; color: var(--charcoal); }
+    .brand em { color: var(--terra); font-style: italic; }
+    .back-link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .back-link:hover { color: var(--terra); }
+
+    header.doc { padding: 56px 0 8px; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    .kicker .num { font-family: 'Playfair Display', serif; font-style: italic; margin-right: 8px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.06; }
+    .doc-lede { color: var(--mid); font-size: 1.1rem; margin-top: 16px; max-width: 60ch; }
+
+    article { padding: 8px 0 8px; }
+    article > p { margin: 20px 0; color: #34302a; }
+    article h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.14; margin: 44px 0 4px; }
+    article ul, article ol { margin: 16px 0 18px; padding-left: 24px; }
+    article ul { list-style: square; }
+    article ol li { margin-bottom: 11px; }
+    article li { margin-bottom: 11px; color: #34302a; }
+    article li strong, article p strong { font-weight: 700; }
+    article em { font-style: italic; }
+    .first { font-size: 1.06rem; }
+
+    blockquote { border-left: 4px solid var(--mustard); background: var(--surface); padding: 18px 22px; margin: 24px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.18rem; line-height: 1.4; color: var(--charcoal); }
+    .tip { border-left: 4px solid var(--mustard); background: var(--surface); padding: 16px 20px; margin: 24px 0; font-size: 1rem; line-height: 1.6; color: #34302a; }
+    .tip b { color: var(--terra-deep); }
+
+    .signoff { margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--terra); }
+
+    .post-foot-nav { margin-top: 48px; border-top: 2px solid var(--charcoal); padding-top: 24px; }
+    .post-foot-nav a { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); }
+
+    footer { border-top: 2px solid var(--charcoal); padding: 28px 0 64px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--mid); flex-wrap: wrap; gap: 12px; }
+    footer .brand-foot { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--charcoal); }
+    .footlinks a { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="index.html">my<em>Shelfie</em></a>
+      <a class="back-link" href="notes.html">&larr; Marginalia</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="doc">
+      <div class="kicker"><span class="num">04</span> Marginalia · the build</div>
+      <h1>Speaking Your Notes into the Margin</h1>
+      <p class="doc-lede">Sometimes typing out a long quote or reflection on a glass keyboard breaks the reading flow. Introducing Voice Dictation for personal notes.</p>
+    </header>
+
+    <article>
+      <p class="first">When we launched the Libby history importer, we had a tester bring in several hundred books they had read over the years. It was a beautiful timeline, but it came with a daunting problem: going through each title to add their thoughts, quotes, and reflections by hand on a virtual keyboard was exhausting. Voice dictation would make it much easier to populate those memories, they thought—and so did we. So we set out to build a clean way to capture your thoughts hands-free: <strong>Voice Dictation</strong>.</p>
+
+      <h2>How to Use Dictation</h2>
+      <p>In the latest build of the mobile app, you'll find a new microphone icon sitting directly next to the notes field on the book detail screen. It is styled with our standard zero-radius, cream, and charcoal MCM guidelines, turning terracotta when active.</p>
+      <ul>
+        <li>Open any book in your library and scroll down to the <strong>Personal Notes</strong> section.</li>
+        <li>Tap the <strong>Rec</strong> button.</li>
+        <li>On the first run, grant permissions to use the <strong>Microphone</strong> and <strong>Speech Recognition</strong> (we only request what the operating system requires to translate your voice).</li>
+        <li>Speak your note naturally (e.g. *"This chapter does a great job explaining the character's motivation, but the pacing feels a bit rushed."*). The button will change to a terracotta background and display <strong>On</strong> while listening.</li>
+        <li>Tap the button again to stop recording, or simply pause speaking. The native silence detection will automatically end the session.</li>
+        <li>The transcribed text will clean-append to your existing notes, and a small green <strong>Saved</strong> checkmark will appear above the text box to confirm it has successfully synced with your database.</li>
+      </ul>
+
+      <blockquote>Dictating a note is like writing in the margins of a physical book - immediate, personal, and keeping you in the flow of the text.</blockquote>
+
+      <div class="tip"><b>Silence Detection:</b> You don't have to worry about hitting "stop" when you're done speaking. The engine monitors speech pauses and automatically terminates recording, restoring the button's default cream styling.</div>
+
+      <h2>Telling the Complete Reading Story</h2>
+      <p>Your notes are where your reading life lives. We want to make it as easy as possible to capture those margins, whether you are typing a detailed review or dictating a fleeting thought while reading on the couch. </p>
+      <p>Try dictating a few notes on your current reads and tell us how the transcription holds up.</p>
+
+      <p class="signoff">-Andy</p>
+
+      <div class="post-foot-nav">
+        <a href="notes.html">&larr; Marginalia</a>
+      </div>
+    </article>
+
+    <footer>
+      <span class="brand-foot">myShelfie</span>
+      <span class="footlinks"><a href="notes.html">Marginalia</a><a href="guide.html">Guide</a><a href="import.html">Importing</a><a href="privacy.html">Privacy</a></span>
+      <span>Marginalia</span>
+    </footer>
+  </div>
+</body>
+</html>
