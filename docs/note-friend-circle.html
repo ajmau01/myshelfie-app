@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building Your Reading Circle - Marginalia</title>
+  <meta name="description" content="The thinking behind the small, trusted reading circle - and how to invite the readers you actually trust to join yours." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    :root {
+      --cream: #F5F0E8; --surface: #FBF8F2; --charcoal: #1E1C18;
+      --terra: #C75B2C; --terra-deep: #A34520; --mustard: #D9A830; --olive: #4A6741; --mid: #7A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 2px solid var(--charcoal); }
+    nav .wrap { max-width: 940px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; text-decoration: none; color: var(--charcoal); }
+    .brand em { color: var(--terra); font-style: italic; }
+    .back-link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .back-link:hover { color: var(--terra); }
+
+    header.doc { padding: 56px 0 8px; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    .kicker .num { font-family: 'Playfair Display', serif; font-style: italic; margin-right: 8px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.06; }
+    .doc-lede { color: var(--mid); font-size: 1.1rem; margin-top: 16px; max-width: 60ch; }
+
+    article { padding: 8px 0 8px; }
+    article > p { margin: 20px 0; color: #34302a; }
+    article h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.14; margin: 44px 0 4px; }
+    article ul, article ol { margin: 16px 0 18px; padding-left: 24px; }
+    article ul { list-style: square; }
+    article ol li { margin-bottom: 11px; }
+    article li { margin-bottom: 11px; color: #34302a; }
+    article li strong, article p strong { font-weight: 700; }
+    article em { font-style: italic; }
+    .first { font-size: 1.06rem; }
+
+    blockquote { border-left: 4px solid var(--mustard); background: var(--surface); padding: 18px 22px; margin: 24px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.18rem; line-height: 1.4; color: var(--charcoal); }
+    .tip { border-left: 4px solid var(--mustard); background: var(--surface); padding: 16px 20px; margin: 24px 0; font-size: 1rem; line-height: 1.6; color: #34302a; }
+    .tip b { color: var(--terra-deep); }
+
+    .signoff { margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--terra); }
+
+    .post-foot-nav { margin-top: 48px; border-top: 2px solid var(--charcoal); padding-top: 24px; }
+    .post-foot-nav a { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); }
+
+    footer { border-top: 2px solid var(--charcoal); padding: 28px 0 64px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--mid); flex-wrap: wrap; gap: 12px; }
+    footer .brand-foot { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--charcoal); }
+    .footlinks a { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="index.html">my<em>Shelfie</em></a>
+      <a class="back-link" href="notes.html">&larr; Marginalia</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="doc">
+      <div class="kicker"><span class="num">05</span> Marginalia · the circle</div>
+      <h1>Building Your Reading Circle</h1>
+      <p class="doc-lede">The best book recommendation you ever got didn't come from a five-star average. It came from someone who knew you. That's the whole idea behind your circle - and here's how to bring those readers in.</p>
+    </header>
+
+    <article>
+      <p class="first">Think about the last book you loved that someone put in your hands. Odds are it wasn't a stranger's review or a chart of star ratings. It was a friend who knew your taste well enough to say, "trust me, this one's for you." myShelfie is built around that simple truth: the recommendations that actually land come from a handful of people who know how you read - not from a crowd, and not from an algorithm guessing in the dark.</p>
+
+      <p>Your circle is where those people live. It's small on purpose, private on purpose, and it's the quiet engine behind everything we want discovery in myShelfie to become.</p>
+
+      <h2>Why a circle, not a crowd</h2>
+      <p>Most reading apps are built like a stage. You broadcast to followers, you rack up a number, and your reviews are public for anyone to scroll past. We went the other way. Your circle is a small room, not an audience:</p>
+      <ul>
+        <li><strong>Small and trusted.</strong> We picture a circle of roughly three to eight readers - the people whose recommendations you'd actually act on, not everyone you've ever met. That's a guideline, not a hard cap: if you genuinely know and trust twenty readers, by all means add all twenty. Trust is the only real limit.</li>
+        <li><strong>No follower counts.</strong> There's no number to grow, no leaderboard, nothing to perform for.</li>
+        <li><strong>No public reviews.</strong> What you read stays between you and the readers you choose to share it with.</li>
+        <li><strong>Mutual.</strong> A connection goes both ways. When someone joins your circle, you're in theirs too.</li>
+      </ul>
+
+      <blockquote>A circle is a small room, not an audience. The point isn't reach - it's the few people whose taste you'd stake your next read on.</blockquote>
+
+      <h2>Name your circle</h2>
+      <p>Tap your avatar in the top corner to open your Portrait. Near your reading stats you'll find your circle - tap its name to call it whatever you like. "The Usual Suspects," "Book Club," "Mom and Dad." It's your room; put your name on the door.</p>
+
+      <h2>How to invite a friend</h2>
+      <p>From your Portrait, find your circle and tap <strong>Invite a Reading Friend</strong>. From there it's quick:</p>
+      <ol>
+        <li>Tap <strong>Generate Link</strong>. myShelfie creates a personal invite that's tied to you.</li>
+        <li>Tap <strong>Share Link</strong> to send it however you like - text, email, a chat thread - through your phone's share menu.</li>
+        <li>Sitting across the table from them? Skip the link entirely and let them scan the <strong>QR code</strong> shown right on the screen.</li>
+      </ol>
+      <p>One thing to know: an invite link <strong>expires after 72 hours</strong>. That's a small safety measure so a stale link can't be passed around forever. If it lapses before your friend gets to it, just open the screen again and tap <strong>Regenerate</strong> for a fresh one.</p>
+
+      <h2>When they join</h2>
+      <p>Your friend taps the link, joins myShelfie if they're new, and you're connected - they appear in your circle, and you in theirs. From then on you can tap into each other's shelves to see what the other has been reading. Books you've both read are marked as common ground; books that are new to you get flagged as a <em>potential rec</em> - a gentle nudge toward something a reader you trust has already vouched for, just by reading it.</p>
+
+      <div class="tip"><b>Who should you invite?</b> The test isn't a number, it's trust. A few readers whose taste you genuinely know will tell you far more than fifty acquaintances - but if you happen to have twenty you'd trust with your next read, add all twenty. Start with the one or two people whose recommendations you've never regretted, and grow from there.</div>
+
+      <h2>Where this is heading</h2>
+      <p>Right now the circle is about seeing what the people you trust are reading. That's the foundation. The direction we're building toward is recommendations that can finally tell you <em>why</em> - "because a reader whose taste closely matches yours loved this" - so a suggestion arrives with a reason attached instead of a shrug. An honest reading life, shared with a few trusted people, turns out to be the best discovery engine there is. The circle is how we get there.</p>
+
+      <p>Invite someone you'd happily lend a book to, and let us know how it feels. You're helping us shape this while the paint's still wet.</p>
+
+      <p class="signoff">-Andy</p>
+
+      <div class="post-foot-nav">
+        <a href="notes.html">&larr; Marginalia</a>
+      </div>
+    </article>
+
+    <footer>
+      <span class="brand-foot">myShelfie</span>
+      <span class="footlinks"><a href="notes.html">Marginalia</a><a href="guide.html">Guide</a><a href="import.html">Importing</a><a href="privacy.html">Privacy</a></span>
+      <span>Marginalia</span>
+    </footer>
+  </div>
+</body>
+</html>
