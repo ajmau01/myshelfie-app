@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naming the reading app — Lirana / Liros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F0E8; --ink:#1E1C18; --terra:#AD4F30; --terra-dk:#8C4A2F;
+    --muted:#7a6a58; --line:#e4dbcc; --page:#ECE4D6;
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--page);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .serif{font-family:var(--serif)}
+  .kicker{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--terra);font-weight:500}
+
+  header{background:var(--ink);color:var(--paper);padding:72px 0 80px}
+  header .kicker{color:#d9935f}
+  header h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,6vw,60px);line-height:1.05;margin:18px 0 16px;letter-spacing:.5px}
+  header p{font-size:18px;color:#cabba6;max-width:560px}
+  .names{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .namechip{font-family:var(--serif);font-size:26px;border:1px solid #4a4138;border-radius:14px;padding:14px 26px;display:flex;align-items:center;gap:12px}
+  .markbox{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none}
+
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4vw,38px);margin-bottom:8px}
+  .lede{color:var(--muted);max-width:620px;margin-bottom:36px;font-size:17px}
+
+  .why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .whycard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .whycard .n{font-family:var(--serif);font-size:30px;color:var(--terra);line-height:1}
+  .whycard h3{font-size:16px;font-weight:500;margin:14px 0 8px}
+  .whycard p{font-size:14px;color:var(--muted)}
+
+  .finalists{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+  .fcard{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:28px}
+  .fhead{display:flex;align-items:center;gap:16px}
+  .ficon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;flex:none}
+  .fname{font-family:var(--serif);font-size:38px;line-height:1}
+  .fsay{font-size:13px;color:var(--muted);margin-top:4px}
+  .ftag{font-family:var(--serif);font-style:italic;font-size:19px;margin:20px 0 16px;line-height:1.4}
+  .fsoul{font-size:14px;color:var(--muted);margin-bottom:18px}
+  .status{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;background:rgba(173,79,48,.1);color:var(--terra-dk);padding:6px 13px;border-radius:20px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#3b8c5a}
+
+  .gallery{display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
+  .stagecol{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .caption{font-size:13px;color:var(--muted);font-weight:500}
+
+  .store{background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:16px;padding:20px;color:#1d1d1f;max-width:480px;width:100%}
+  .storerow{display:flex;gap:16px;align-items:center}
+  .sname{font-size:22px;font-weight:500}
+  .ssub{font-size:14px;color:#6e6e73;margin-top:1px}
+  .getbtn{background:#0a84ff;color:#fff;font-size:13px;font-weight:500;padding:6px 24px;border-radius:20px}
+  .stats{display:flex;justify-content:space-between;text-align:center;border-top:1px solid rgba(0,0,0,.08);border-bottom:1px solid rgba(0,0,0,.08);margin:16px 0;padding:12px 0}
+  .stats>div{flex:1}
+  .stats>div+div{border-left:1px solid rgba(0,0,0,.08)}
+  .stv{font-size:15px;font-weight:500}
+  .stl{font-size:11px;color:#8a8a8e;margin-top:2px}
+  .shots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .shot{background:var(--paper);border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+  .shead{font-size:12px;font-weight:500;padding:10px 10px 6px;line-height:1.3}
+  .cov{aspect-ratio:2/3;border-radius:3px;padding:4px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px}
+  .l1{height:2.5px;background:rgba(245,240,232,.85);width:80%;border-radius:2px}
+  .l2{height:2.5px;background:rgba(245,240,232,.5);width:55%;border-radius:2px}
+  .sdesc{margin-top:16px;font-size:13px;color:#3a3a3c}
+  .av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--paper)}
+
+  .phone{width:300px;background:#141210;border-radius:30px;padding:9px}
+  .screen{background:var(--ink);border-radius:22px;padding:20px 18px;color:var(--paper)}
+  .phead{display:flex;align-items:center;justify-content:space-between}
+  .premium{font-size:10px;color:var(--ink);background:var(--terra);padding:3px 10px;border-radius:12px;font-weight:500}
+  .pmeta{font-size:11px;color:#8a7a66;margin-top:3px}
+  .quote{display:flex;gap:10px;margin-top:18px}
+  .qbar{width:3px;background:var(--terra);border-radius:2px;flex:none}
+  .quote p{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.5}
+  .plabel{font-size:12px;color:var(--terra);margin:20px 0 8px}
+  .pbody{font-size:13px;color:#cabba6;line-height:1.65}
+  .chip{font-size:11px;background:rgba(245,240,232,.1);border:1px solid rgba(245,240,232,.18);padding:4px 10px;border-radius:14px}
+  .bartrack{flex:1;height:6px;background:rgba(245,240,232,.12);border-radius:4px;overflow:hidden}
+  .barrow{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+  .barrow span:first-child{font-size:12px;color:#cabba6;width:74px;flex:none}
+  .barrow span:last-child{font-size:12px;color:#cabba6;width:30px;text-align:right}
+
+  .shelfscreen{background:var(--paper);border-radius:22px;overflow:hidden}
+  .shelfhead{padding:11px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+  .shelfgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;padding:12px}
+  .tabbar{display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+
+  footer{padding:48px 0 64px;color:var(--muted);font-size:13px}
+  footer .wrap>p{max-width:680px;margin-bottom:8px}
+  @media(max-width:520px){.shots{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">myShelfie &rarr; rename &middot; brand exploration</div>
+    <h1 class="serif">A name for your<br>reading life.</h1>
+    <p>We tested dozens of names against trademark, app-store, and domain reality. Two coined finalists survived, fully dressed below &mdash; from app icon to the premium Portrait.</p>
+    <div class="names">
+      <div class="namechip">
+        <span class="markbox" style="background:var(--terra)">
+          <svg width="20" height="20" viewBox="0 0 28 28"><path d="M4 9 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#F5F0E8" stroke-width="2.2" stroke-linecap="round"/><path d="M4 15 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#F5F0E8" stroke-width="2.2" stroke-linecap="round"/><path d="M4 21 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#F5F0E8" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </span>Lirana
+      </div>
+      <div class="namechip">
+        <span class="markbox" style="background:#322c25">
+          <svg width="20" height="20" viewBox="0 0 28 28"><path d="M4 9 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#AD4F30" stroke-width="2.2" stroke-linecap="round"/><path d="M4 15 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#AD4F30" stroke-width="2.2" stroke-linecap="round"/><path d="M4 21 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#AD4F30" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </span>Liros
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2 class="serif">Why an invented name</h2>
+    <p class="lede">Every recognizable book or reading word is already a competing app &mdash; Shelfie, Pagebound, Anthology, Orbit. Ownable means invented.</p>
+    <div class="why">
+      <div class="whycard"><div class="n serif">01</div><h3>The name's job isn't to explain</h3><p>That's the tagline's job. The name's job is to be distinctive and ours. Clarity comes from name + tagline + icon together.</p></div>
+      <div class="whycard"><div class="n serif">02</div><h3>"What does it mean?" is the point</h3><p>What does "Spotify" mean? Nothing &mdash; until the product poured meaning in. An invented word is an empty vessel we get to fill.</p></div>
+      <div class="whycard"><div class="n serif">03</div><h3>Recognizable = unownable</h3><p>A descriptive name (e.g. "BookSeek") can't be trademarked and vanishes among a thousand look-alikes. Coined words stand apart and are defensible.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="serif">The two finalists</h2>
+    <p class="lede">Both built on the same root &mdash; the sea / the vessel filled by reading currents (Irish <em>Lir</em>, the deep source). Two different souls.</p>
+    <div class="finalists">
+
+      <div class="fcard">
+        <div class="fhead">
+          <span class="ficon" style="background:var(--terra)">
+            <svg width="36" height="36" viewBox="0 0 28 28"><path d="M4 9 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#F5F0E8" stroke-width="2" stroke-linecap="round"/><path d="M4 15 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#F5F0E8" stroke-width="2" stroke-linecap="round"/><path d="M4 21 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#F5F0E8" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <div><div class="fname serif">Lirana</div><div class="fsay">lih-RAH-na</div></div>
+        </div>
+        <div class="ftag serif">Every book that's ever been part of you.</div>
+        <p class="fsoul">The warmer read &mdash; a curated library, a place you keep something precious. <em>Lir</em> (the sea) + <em>-ana</em> (a curated collection, as in <em>Americana</em>).</p>
+        <span class="status"><span class="dot"></span>Cleared &mdash; danger box empty, domain to confirm</span>
+      </div>
+
+      <div class="fcard">
+        <div class="fhead">
+          <span class="ficon" style="background:var(--ink)">
+            <svg width="36" height="36" viewBox="0 0 28 28"><path d="M4 9 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#AD4F30" stroke-width="2" stroke-linecap="round"/><path d="M4 15 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#AD4F30" stroke-width="2" stroke-linecap="round"/><path d="M4 21 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#AD4F30" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <div><div class="fname serif">Liros</div><div class="fsay">LEE-ros</div></div>
+        </div>
+        <div class="ftag serif">The vessel of your reading life.</div>
+        <p class="fsoul">The crisper, more premium read &mdash; a timeless, structural feel (like <em>Kairos</em>). <em>Lir</em> (the sea) + <em>-os</em> (a classical, structural ending).</p>
+        <span class="status"><span class="dot"></span>Viable &mdash; unrelated to the rope brand; use a .app domain</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="serif">How readers first meet it</h2>
+    <p class="lede">The App Store listing &mdash; the same app, two identities. Note the real-world constraints (30-character subtitle, in-app purchases for the Portrait tier).</p>
+    <div class="gallery">
+
+      <div class="store">
+        <div class="storerow">
+          <span class="ficon" style="background:var(--terra)">
+            <svg width="40" height="40" viewBox="0 0 28 28"><path d="M4 9 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#F5F0E8" stroke-width="2" stroke-linecap="round"/><path d="M4 15 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#F5F0E8" stroke-width="2" stroke-linecap="round"/><path d="M4 21 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#F5F0E8" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <div style="flex:1">
+            <div class="sname">Lirana</div><div class="ssub">Your lifelong reading shelf</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px"><span style="font-size:12px;color:#8a8a8e">Mauer Studio</span><span class="getbtn">GET</span></div>
+          </div>
+        </div>
+        <div class="stats">
+          <div><div class="stv">4.8</div><div class="stl">&starf;&starf;&starf;&starf;&starf; 1.2K</div></div>
+          <div><div class="stv">#9</div><div class="stl">Books</div></div>
+          <div><div class="stv">12+</div><div class="stl">Age</div></div>
+          <div><div class="stv" style="color:var(--terra)">Indie</div><div class="stl">Maker</div></div>
+        </div>
+        <div class="shots">
+          <div class="shot"><div class="shead">Every format,<br>one shelf</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:0 8px 10px">
+            <div class="cov" style="background:#AD4F30"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#C9A227"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#3E6B6B"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#7B8C6A"><div class="l1"></div><div class="l2"></div></div></div></div>
+          <div class="shot" style="background:var(--ink)"><div class="shead" style="color:var(--paper)">Your reading<br>portrait</div><div style="padding:2px 10px 12px"><div style="font-size:11px;color:var(--terra);margin-bottom:6px">You read in seasons.</div><div style="height:3px;background:rgba(245,240,232,.7);width:90%;border-radius:2px;margin-bottom:5px"></div><div style="height:3px;background:rgba(245,240,232,.45);width:75%;border-radius:2px;margin-bottom:5px"></div><div style="height:3px;background:rgba(245,240,232,.45);width:82%;border-radius:2px;margin-bottom:14px"></div><div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:10px;color:var(--ink);background:#C9A227;padding:2px 7px;border-radius:10px">memoir</span><span style="font-size:10px;color:var(--paper);background:#3E6B6B;padding:2px 7px;border-radius:10px">translated</span></div></div></div>
+          <div class="shot"><div class="shead">A small,<br>trusted circle</div><div style="padding:2px 10px 12px"><div style="display:flex;margin-bottom:8px"><div class="av" style="background:#AD4F30">TM</div><div class="av" style="background:#3E6B6B;margin-left:-8px">PS</div><div class="av" style="background:#7B8C6A;margin-left:-8px">ES</div></div><div style="font-size:10px;color:var(--muted);line-height:1.4">Tracy sent you<br><span style="color:var(--ink)">a book she loved.</span></div></div></div>
+        </div>
+        <div class="sdesc"><span class="serif" style="font-style:italic;color:#1d1d1f">Every book that's ever been part of you</span> &mdash; owned, borrowed from Libby, listened to on a drive, or set down unfinished. <span style="color:#0a84ff">more</span></div>
+      </div>
+
+      <div class="store">
+        <div class="storerow">
+          <span class="ficon" style="background:var(--ink)">
+            <svg width="40" height="40" viewBox="0 0 28 28"><path d="M4 9 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#AD4F30" stroke-width="2" stroke-linecap="round"/><path d="M4 15 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#AD4F30" stroke-width="2" stroke-linecap="round"/><path d="M4 21 q3.5 -3 7 0 t7 0 t7 0" fill="none" stroke="#AD4F30" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <div style="flex:1">
+            <div class="sname">Liros</div><div class="ssub">Your lifelong reading vessel</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px"><span style="font-size:12px;color:#8a8a8e">Mauer Studio</span><span class="getbtn">GET</span></div>
+          </div>
+        </div>
+        <div class="stats">
+          <div><div class="stv">4.9</div><div class="stl">&starf;&starf;&starf;&starf;&starf; 980</div></div>
+          <div><div class="stv">#7</div><div class="stl">Books</div></div>
+          <div><div class="stv">12+</div><div class="stl">Age</div></div>
+          <div><div class="stv" style="color:var(--terra)">Indie</div><div class="stl">Maker</div></div>
+        </div>
+        <div class="shots">
+          <div class="shot"><div class="shead">Every format,<br>one shelf</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:0 8px 10px">
+            <div class="cov" style="background:#3E6B6B"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#AD4F30"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#9A8C5A"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#6B7F8C"><div class="l1"></div><div class="l2"></div></div></div></div>
+          <div class="shot" style="background:var(--ink)"><div class="shead" style="color:var(--paper)">Your reading<br>portrait</div><div style="padding:2px 10px 12px"><div style="font-size:11px;color:var(--terra);margin-bottom:6px">You read in seasons.</div><div style="height:3px;background:rgba(245,240,232,.7);width:90%;border-radius:2px;margin-bottom:5px"></div><div style="height:3px;background:rgba(245,240,232,.45);width:75%;border-radius:2px;margin-bottom:5px"></div><div style="height:3px;background:rgba(245,240,232,.45);width:82%;border-radius:2px;margin-bottom:14px"></div><div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:10px;color:var(--ink);background:#C9A227;padding:2px 7px;border-radius:10px">memoir</span><span style="font-size:10px;color:var(--paper);background:#3E6B6B;padding:2px 7px;border-radius:10px">translated</span></div></div></div>
+          <div class="shot"><div class="shead">A small,<br>trusted circle</div><div style="padding:2px 10px 12px"><div style="display:flex;margin-bottom:8px"><div class="av" style="background:#AD4F30">TM</div><div class="av" style="background:#3E6B6B;margin-left:-8px">PS</div><div class="av" style="background:#7B8C6A;margin-left:-8px">ES</div></div><div style="font-size:10px;color:var(--muted);line-height:1.4">Tracy sent you<br><span style="color:var(--ink)">a book she loved.</span></div></div></div>
+        </div>
+        <div class="sdesc"><span class="serif" style="font-style:italic;color:#1d1d1f">Every book that's been part of you</span> &mdash; owned, borrowed, listened to, or set down. One deep vessel, every format. <span style="color:#0a84ff">more</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="serif">A closer look</h2>
+    <p class="lede">The free shelf is bright and visual &mdash; covers face out, like a bookstore. The paid Portrait goes deep and intimate, speaking in a literary mirror voice. Same app, two moods.</p>
+    <div class="gallery">
+
+      <div class="stagecol">
+        <div class="phone"><div class="shelfscreen">
+          <div class="shelfhead"><span class="serif" style="font-size:16px">Lirana</span><span style="color:var(--muted)">&#9906;</span></div>
+          <div class="shelfgrid">
+            <div class="cov" style="background:#AD4F30"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#C9A227"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#3E6B6B"><div class="l1"></div><div class="l2"></div></div>
+            <div class="cov" style="background:#7B8C6A"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#8C4A2F"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#6B7F8C"><div class="l1"></div><div class="l2"></div></div>
+            <div class="cov" style="background:#B5752F"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#9A8C5A"><div class="l1"></div><div class="l2"></div></div><div class="cov" style="background:#A8503F"><div class="l1"></div><div class="l2"></div></div>
+          </div>
+          <div class="tabbar"><span style="color:var(--terra)">Shelf</span><span>Search</span><span>Portrait</span><span>Circle</span></div>
+        </div></div>
+        <div class="caption">The free shelf</div>
+      </div>
+
+      <div class="stagecol">
+        <div class="phone"><div class="screen">
+          <div class="phead"><span class="serif" style="font-size:21px">Portrait</span><span class="premium">Premium</span></div>
+          <div class="pmeta">Spring 2026 &middot; Lirana</div>
+          <div class="quote"><div class="qbar"></div><p>You read in seasons &mdash; dense literary novels when it's cold, and borrowed thrillers for the road.</p></div>
+          <div class="plabel">What your reading reveals</div>
+          <p class="pbody">You return, again and again, to translated fiction and quiet domestic novels &mdash; drawn more to interior lives than to plot.</p>
+          <div class="plabel">Your currents</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip">translated fiction</span><span class="chip">quiet domestic novels</span><span class="chip">memoir</span></div>
+          <div class="plabel">How you read</div>
+          <div class="barrow"><span>Physical</span><div class="bartrack"><div style="width:46%;height:100%;background:#AD4F30"></div></div><span>46%</span></div>
+          <div class="barrow"><span>Audiobook</span><div class="bartrack"><div style="width:34%;height:100%;background:#C9A227"></div></div><span>34%</span></div>
+          <div class="barrow"><span>Borrowed</span><div class="bartrack"><div style="width:20%;height:100%;background:#3E6B6B"></div></div><span>20%</span></div>
+          <div class="plabel">An honest note</div>
+          <p class="serif" style="font-style:italic;font-size:14px;line-height:1.55;color:#cabba6">You set down nine books unfinished this year. You don't force a book that isn't working &mdash; and that restraint is its own kind of taste.</p>
+        </div></div>
+        <div class="caption">The Portrait &mdash; premium tier</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Directional design comps for naming review &mdash; placeholder display type (Fraunces / Georgia) and sample data. Both names passed preliminary trademark, app-store, and domain screening; a licensed-attorney clearance is the final gate before filing.</p>
+    <p>Brand exploration for the myShelfie rename &middot; 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>
