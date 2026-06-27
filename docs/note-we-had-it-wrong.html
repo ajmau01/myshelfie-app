@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We Had It Wrong. Tracy Set Us Straight. - Marginalia</title>
+  <meta name="description" content="The format mess, and the co-founder who made us fix it. How 'library is not a format' reshaped the way myShelfie records your books." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    :root {
+      --cream: #F5F0E8; --surface: #FBF8F2; --charcoal: #1E1C18;
+      --terra: #C75B2C; --terra-deep: #A34520; --mustard: #D9A830; --olive: #4A6741; --mid: #7A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 2px solid var(--charcoal); }
+    nav .wrap { max-width: 940px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; text-decoration: none; color: var(--charcoal); }
+    .brand em { color: var(--terra); font-style: italic; }
+    .back-link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .back-link:hover { color: var(--terra); }
+
+    header.doc { padding: 56px 0 8px; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    .kicker .num { font-family: 'Playfair Display', serif; font-style: italic; margin-right: 8px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.06; }
+    .doc-lede { color: var(--mid); font-size: 1.1rem; margin-top: 16px; max-width: 60ch; }
+
+    article { padding: 8px 0 8px; }
+    article > p { margin: 20px 0; color: #34302a; }
+    article h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.14; margin: 44px 0 4px; }
+    article ul, article ol { margin: 16px 0 18px; padding-left: 24px; }
+    article ul { list-style: square; }
+    article ol li { margin-bottom: 11px; }
+    article li { margin-bottom: 11px; color: #34302a; }
+    article li strong, article p strong { font-weight: 700; }
+    article em { font-style: italic; }
+    .first { font-size: 1.06rem; }
+
+    blockquote { border-left: 4px solid var(--mustard); background: var(--surface); padding: 18px 22px; margin: 24px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; line-height: 1.35; color: var(--charcoal); }
+    .tip { border-left: 4px solid var(--mustard); background: var(--surface); padding: 16px 20px; margin: 24px 0; font-size: 1rem; line-height: 1.6; color: #34302a; }
+    .tip b { color: var(--terra-deep); }
+
+    .signoff { margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--terra); }
+
+    .post-foot-nav { margin-top: 48px; border-top: 2px solid var(--charcoal); padding-top: 24px; }
+    .post-foot-nav a { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); }
+
+    footer { border-top: 2px solid var(--charcoal); padding: 28px 0 64px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--mid); flex-wrap: wrap; gap: 12px; }
+    footer .brand-foot { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--charcoal); }
+    .footlinks a { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="index.html">my<em>Shelfie</em></a>
+      <a class="back-link" href="notes.html">&larr; Marginalia</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="doc">
+      <div class="kicker"><span class="num">06</span> Marginalia · the build</div>
+      <h1>We Had It Wrong. Tracy Set Us Straight.</h1>
+      <p class="doc-lede">The format mess, and the co-founder who made us fix it.</p>
+    </header>
+
+    <article>
+      <p class="first">I want to tell you about something we got wrong for a long time, and how we finally got it right. Not because it makes us look good - it doesn't, really - but because the story of how it got fixed is the whole reason myShelfie exists.</p>
+
+      <h2>The little lie the app made you tell</h2>
+      <p>From the very first version, myShelfie asked you one question about how a book came into your life: what format is it? The choices were Physical, eBook, Audiobook... and Library.</p>
+      <p>Look at that list for a second and you'll spot the problem we somehow didn't for months. "Library" isn't a format. It's not <em>how</em> you read a book - it's <em>where you got it</em>. Nobody reads a book "in library." You read a paper copy you borrowed, or an ebook you checked out on Libby, or an audiobook you streamed from your library's app.</p>
+      <p>So if you borrowed a physical book from your local branch, myShelfie made you choose: call it "Physical" and lose the fact that it was a library loan with a due date, or call it "Library" and pretend you never turned a real paper page. You couldn't say both. The app quietly forced a little lie either way.</p>
+
+      <h2>Five words from Tracy</h2>
+      <p>Our co-founder, Tracy, is also our most relentless tester - and she happens to read exactly the way myShelfie is built for: physical books, library loans on Libby, audiobooks, the whole mix. So she kept slamming into this wall. She reported it. Then she reported it again. Then a third time. And somewhere in there she said the thing that finally cracked it open for those of us building the app:</p>
+      <blockquote>"Library is not a format."</blockquote>
+      <p>Five words. Obvious in hindsight. We'd been so deep in how the app was built that we'd stopped seeing how people actually read.</p>
+
+      <h2>So we tore it up</h2>
+      <p>We rebuilt the whole thing around three plain questions - the ones you'd actually ask yourself about a book:</p>
+      <ul>
+        <li><strong>How did you find it?</strong> A friend, a book club, browsing the shelves. (We call this Discovery.)</li>
+        <li><strong>How did you read it?</strong> Physical, ebook, audiobook.</li>
+        <li><strong>Where did the copy come from?</strong> Libby, Hoopla, Audible, Kindle, a bookstore, a gift, borrowed from a friend, borrowed from the library.</li>
+      </ul>
+      <p>And here's the part that matters most: you can answer with more than one. Borrowed it from the library <em>and</em> later bought your own copy? Both go in. Started it on paper and finished it as an audiobook? Both formats. Nothing makes you flatten how you actually experienced a book into a single box anymore.</p>
+      <p>Borrowing is its own thing now, separate from format - so you can borrow a <em>physical</em> book and still track the due date, exactly like Tracy wanted. And once you've finished a book, it stops nagging you about a return date that doesn't matter anymore.</p>
+
+      <h2>Why I'm telling you instead of quietly shipping it</h2>
+      <p>myShelfie is supposed to be the one place that records how you <em>really</em> read - not a tidy fiction, not a librarian's spreadsheet, the messy honest truth of it. We had a design that quietly asked you to fudge that truth, and it took our own co-founder refusing to let it go to make us fix it.</p>
+      <p>That's the job, honestly. You tell us where it's wrong, we listen, we rebuild. Tracy just happens to be the loudest, and the most right.</p>
+      <p>If you're on the latest build, open a few of your books and have a look. And if something still feels off about how myShelfie records your reading life, tell us - shake your phone, send a note. The next "library is not a format" is probably sitting in one of your libraries right now, waiting for someone stubborn enough to point at it.</p>
+      <p>Thanks for reading along.</p>
+
+      <p class="signoff">-Andy</p>
+
+      <div class="post-foot-nav">
+        <a href="notes.html">&larr; Marginalia</a>
+      </div>
+    </article>
+
+    <footer>
+      <span class="brand-foot">myShelfie</span>
+      <span class="footlinks"><a href="notes.html">Marginalia</a><a href="guide.html">Guide</a><a href="import.html">Importing</a><a href="privacy.html">Privacy</a></span>
+      <span>Marginalia</span>
+    </footer>
+  </div>
+</body>
+</html>
