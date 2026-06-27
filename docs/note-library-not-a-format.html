@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Library Book is Not a Format - Marginalia</title>
+  <meta name="description" content="A tester wanted to borrow a physical book and keep the due date. They were right. How we stopped treating 'Library' as a reading format." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    :root {
+      --cream: #F5F0E8; --surface: #FBF8F2; --charcoal: #1E1C18;
+      --terra: #C75B2C; --terra-deep: #A34520; --mustard: #D9A830; --olive: #4A6741; --mid: #7A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 2px solid var(--charcoal); }
+    nav .wrap { max-width: 940px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; text-decoration: none; color: var(--charcoal); }
+    .brand em { color: var(--terra); font-style: italic; }
+    .back-link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .back-link:hover { color: var(--terra); }
+
+    header.doc { padding: 56px 0 8px; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    .kicker .num { font-family: 'Playfair Display', serif; font-style: italic; margin-right: 8px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.06; }
+    .doc-lede { color: var(--mid); font-size: 1.1rem; margin-top: 16px; max-width: 60ch; }
+
+    article { padding: 8px 0 8px; }
+    article > p { margin: 20px 0; color: #34302a; }
+    article h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.14; margin: 44px 0 4px; }
+    article ul, article ol { margin: 16px 0 18px; padding-left: 24px; }
+    article ul { list-style: square; }
+    article ol li { margin-bottom: 11px; }
+    article li { margin-bottom: 11px; color: #34302a; }
+    article li strong, article p strong { font-weight: 700; }
+    article em { font-style: italic; }
+    .first { font-size: 1.06rem; }
+
+    blockquote { border-left: 4px solid var(--mustard); background: var(--surface); padding: 18px 22px; margin: 24px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.18rem; line-height: 1.4; color: var(--charcoal); }
+    .tip { border-left: 4px solid var(--mustard); background: var(--surface); padding: 16px 20px; margin: 24px 0; font-size: 1rem; line-height: 1.6; color: #34302a; }
+    .tip b { color: var(--terra-deep); }
+
+    .signoff { margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--terra); }
+
+    .post-foot-nav { margin-top: 48px; border-top: 2px solid var(--charcoal); padding-top: 24px; }
+    .post-foot-nav a { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); }
+
+    footer { border-top: 2px solid var(--charcoal); padding: 28px 0 64px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--mid); flex-wrap: wrap; gap: 12px; }
+    footer .brand-foot { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--charcoal); }
+    .footlinks a { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="index.html">my<em>Shelfie</em></a>
+      <a class="back-link" href="notes.html">&larr; Marginalia</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="doc">
+      <div class="kicker"><span class="num">06</span> Marginalia · library loans</div>
+      <h1>A Library Book is Not a Format</h1>
+      <p class="doc-lede">A tester wanted to borrow a physical book and still keep the due date. They were right - so we stopped treating "Library" like a format.</p>
+    </header>
+
+    <article>
+      <p class="first">A tester - again, thank you for keeping us honest - sent in a report from the field with a very simple request:</p>
+
+      <blockquote>"Would like to select both library and physical - I like the library fields!"</blockquote>
+
+      <p>When we read that, it clicked. Under the hood, myShelfie was forcing a compromise that didn't make sense. If you borrowed a physical hardcover from your local library branch, you had to choose: mark it as <strong>Physical</strong> (and lose the due date calendar and return prompts) or mark it as <strong>Library</strong> (and lose the fact that you were turning paper pages).</p>
+
+      <p>We had treated "Library" as a reading format, when it's actually a relationship. Here is how we untangled them, and why it makes your reading portrait a lot more accurate.</p>
+
+      <h2>The problem with "Library" as a format</h2>
+      <p>In the first versions of myShelfie, format was a simple, mutually exclusive list: <em>Physical, Library, eBook, Audiobook, Digital</em>.</p>
+      <p>But a library book isn't a medium. You can borrow a physical paperback, check out an eBook on Libby, or stream an audiobook on Hoopla. By forcing "Library" into the format list, we created a blind spot. A reader with a library book had to choose between tracking their loan or recording how they actually consumed the book.</p>
+      <p>If you are trying to look back at the end of the year and see, say, what percentage of your reading was print vs. digital, the data was skewed. Half your "print" books were hiding under the "Library" label.</p>
+
+      <h2>The new way: medium plus loan</h2>
+      <p>To fix this, we are separating <strong>what</strong> you are reading from <strong>where</strong> you got it. Now, when you add a book or a new reading instance to your library:</p>
+      <ol>
+        <li><strong>Choose the format.</strong> You pick how you are reading it: <strong>Physical</strong>, <strong>eBook</strong>, or <strong>Audiobook</strong>.</li>
+        <li><strong>Toggle the loan.</strong> You check a new option: <strong>"Borrowed from Library"</strong>.</li>
+        <li><strong>Set the details.</strong> Checking that box slides open the library fields you love, letting you set the <strong>Library System</strong> (like <em>Brooklyn Public Library</em> or <em>Libby</em>) and the <strong>Due Date</strong>.</li>
+      </ol>
+      <p>This gives you the best of both worlds. A borrowed hardcover is now recorded as <strong>Physical + Library Loan</strong>. An eBook from Libby is <strong>eBook + Library Loan</strong>.</p>
+      <p>You get to keep your reading stats perfectly accurate, and the app still knows exactly when to remind you to return the book before it's overdue.</p>
+
+      <h2>What about Libby and Hoopla shares?</h2>
+      <p>When you share a link from Libby or Hoopla to myShelfie, the link looks exactly the same whether you actually checked the book out or were just browsing the shelves. So instead of guessing, the share screen now asks you two quick things.</p>
+      <p>First, <strong>how you're reading it</strong>: a quick toggle to tap <strong>eBook</strong> or <strong>Audiobook</strong> (with eBook pre-selected). No more static "Format: Library" label.</p>
+      <p>Second, <strong>why you're saving it</strong>: a <strong>"Want to read"</strong> vs <strong>"Borrowed it"</strong> choice. It defaults to <em>Want to read</em>, because a single share is usually a "save this for later." So a book you were only browsing lands on your want-to-read shelf with no due date and no return nags. Tap <strong>"Borrowed it"</strong> and it becomes a proper library loan, with the due date and reminders, flagged as active in the background.</p>
+      <p>That small choice keeps two things honest at once: the book remembers it came from Libby, and your Active Loans list only ever shows things you actually owe back.</p>
+
+      <h2>Keep the feedback coming</h2>
+      <p>This is exactly why we run tests. It's easy to build a data model that makes sense on a whiteboard but breaks down when you're standing in front of your bookshelf holding a library copy.</p>
+      <p>This update is live now on your phone. Let us know how it feels.</p>
+
+      <p class="signoff">-Andy</p>
+
+      <div class="post-foot-nav">
+        <a href="notes.html">&larr; Marginalia</a>
+      </div>
+    </article>
+
+    <footer>
+      <span class="brand-foot">myShelfie</span>
+      <span class="footlinks"><a href="notes.html">Marginalia</a><a href="guide.html">Guide</a><a href="import.html">Importing</a><a href="privacy.html">Privacy</a></span>
+      <span>Marginalia</span>
+    </footer>
+  </div>
+</body>
+</html>
