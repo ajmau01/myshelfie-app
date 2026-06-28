@@ -47,6 +47,10 @@
     .tip { border-left: 4px solid var(--mustard); background: var(--surface); padding: 16px 20px; margin: 24px 0; font-size: 1rem; line-height: 1.6; color: #34302a; }
     .tip b { color: var(--terra-deep); }
 
+    figure.shot { margin: 34px auto; max-width: 300px; text-align: center; }
+    figure.shot img { width: 100%; height: auto; display: block; border: 2px solid var(--charcoal); }
+    figure.shot figcaption { font-size: 0.82rem; color: var(--mid); margin-top: 11px; font-style: italic; line-height: 1.5; }
+
     .signoff { margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--terra); }
 
     .post-foot-nav { margin-top: 48px; border-top: 2px solid var(--charcoal); padding-top: 24px; }
@@ -75,6 +79,11 @@
     <article>
       <p class="first">A tester - thank you, you know who you are - imported their Libby history and noticed something: the books came in, but the reading timeline stayed empty. No dates. For an app whose whole pitch is <em>your reading life over time</em>, that's a real problem. So we dug in. Here's what was going on, the judgment call we made, and the thirty seconds it'll take you to get those dates back.</p>
 
+      <figure class="shot">
+        <img src="img/note-libby-library.png" alt="The myShelfie library grid showing book covers across read, currently-reading, and to-read states." />
+        <figcaption>Your library, however the books arrived - the one thing missing was <em>when</em> you read them.</figcaption>
+      </figure>
+
       <h2>What Libby actually hands us</h2>
       <p>When you export your Libby timeline, you get a tidy little file with a row for every book you've borrowed. Each row knows the title, the author, the format, your library - and a date.</p>
       <p>But here's the catch: that date is the day you <em>borrowed</em> the book. Libby doesn't record the day you <em>finished</em> it. It can't, really - it's a lending app, not a reading journal. It knows when a book showed up in your hands and when it went back. What happened in between is your business.</p>
@@ -95,10 +104,20 @@
         <li>Make sure the mode is set to <strong>"Mark as Read."</strong></li>
         <li>Import.</li>
       </ol>
+
+      <figure class="shot">
+        <img src="img/note-libby-import.png" alt="The Import Libby Timeline screen, with numbered steps for exporting your timeline from Libby and a Select Libby CSV File button." />
+        <figcaption>The in-app import screen walks you through exporting your Libby timeline, then pick the same file and hit import.</figcaption>
+      </figure>
       <p>That's it. Books already in your library will quietly get their read dates filled in - and <strong>nothing gets duplicated.</strong> We match each incoming book against what's already on your shelves, so a re-import tops up the missing pieces instead of creating a second copy of everything. Run it twice if you're nervous; the second run does nothing.</p>
       <p>Then take a look at your reading timeline. It should finally have some shape to it - your borrowing history, laid out across the years.</p>
 
       <div class="tip"><b>One small habit, worth it:</b> everything imports marked <strong>Read</strong> - that's the default we want - so the one thing left to you is the exceptions. If you remember borrowing a book and not finishing it, go mark it <strong>DNF</strong> (with a reason, if one comes to mind). It's quick, and it matters more than it looks: your picks and your reading Portrait are built from what you actually read <em>and</em> what you didn't. An honestly-marked DNF makes your recommendations sharper and your portrait truer - while a "read" that was really a "gave up at chapter three" quietly skews both. So when a title jogs your memory, follow up.</div>
+
+      <figure class="shot">
+        <img src="img/note-libby-dnf.png" alt="A book detail view marked DNF - Did Not Finish - in myShelfie." />
+        <figcaption>Marking the exceptions <strong>DNF</strong> is the only manual step - and it's signal, not busywork.</figcaption>
+      </figure>
 
       <h2>The small print we actually mean</h2>
       <p>We made a point of <em>not</em> pretending the borrow date is a precise finish date. It's an approximation, we tell you it's an approximation, and you stay in control of the exceptions. That's the deal we want with everything in here: get you the useful thing automatically, never fake certainty we don't have, and leave the honest edits in your hands.</p>
