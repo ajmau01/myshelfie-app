@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Your Import Stopped at Twenty Books - Marginalia</title>
+  <meta name="description" content="A reader's Libby import stalled a fifth of the way in. The bug we'd shipped to ourselves the day before, and the rebuild that made the importer hard to break." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    :root {
+      --cream: #F5F0E8; --surface: #FBF8F2; --charcoal: #1E1C18;
+      --terra: #C75B2C; --terra-deep: #A34520; --mustard: #D9A830; --olive: #4A6741; --mid: #7A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 2px solid var(--charcoal); }
+    nav .wrap { max-width: 940px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; text-decoration: none; color: var(--charcoal); }
+    .brand em { color: var(--terra); font-style: italic; }
+    .back-link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .back-link:hover { color: var(--terra); }
+
+    header.doc { padding: 56px 0 8px; }
+    .kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--terra); margin-bottom: 14px; }
+    .kicker .num { font-family: 'Playfair Display', serif; font-style: italic; margin-right: 8px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.06; }
+    .doc-lede { color: var(--mid); font-size: 1.1rem; margin-top: 16px; max-width: 60ch; }
+
+    article { padding: 8px 0 8px; }
+    article > p { margin: 20px 0; color: #34302a; }
+    article h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.14; margin: 44px 0 4px; }
+    article ul, article ol { margin: 16px 0 18px; padding-left: 24px; }
+    article ul { list-style: square; }
+    article ol li { margin-bottom: 11px; }
+    article li { margin-bottom: 11px; color: #34302a; }
+    article li strong, article p strong { font-weight: 700; }
+    article em { font-style: italic; }
+    .first { font-size: 1.06rem; }
+
+    blockquote { border-left: 4px solid var(--mustard); background: var(--surface); padding: 18px 22px; margin: 24px 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.18rem; line-height: 1.4; color: var(--charcoal); }
+    .tip { border-left: 4px solid var(--mustard); background: var(--surface); padding: 16px 20px; margin: 24px 0; font-size: 1rem; line-height: 1.6; color: #34302a; }
+    .tip b { color: var(--terra-deep); }
+
+    figure.shot { margin: 34px auto; max-width: 300px; text-align: center; }
+    figure.shot img { width: 100%; height: auto; display: block; border: 2px solid var(--charcoal); }
+    figure.shot figcaption { font-size: 0.82rem; color: var(--mid); margin-top: 11px; font-style: italic; line-height: 1.5; }
+
+    .signoff { margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--terra); }
+
+    .post-foot-nav { margin-top: 48px; border-top: 2px solid var(--charcoal); padding-top: 24px; }
+    .post-foot-nav a { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); }
+
+    footer { border-top: 2px solid var(--charcoal); padding: 28px 0 64px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--mid); flex-wrap: wrap; gap: 12px; }
+    footer .brand-foot { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--charcoal); }
+    .footlinks a { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; border-bottom: 2px solid var(--terra); margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="index.html">my<em>Shelfie</em></a>
+      <a class="back-link" href="notes.html">&larr; Marginalia</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="doc">
+      <div class="kicker"><span class="num">07</span> Marginalia · the build</div>
+      <h1>Why Your Import Stopped at Twenty Books</h1>
+      <p class="doc-lede">A reader's Libby import stalled a fifth of the way in. The culprit was a bug we'd shipped to ourselves the day before - and chasing it down made the whole importer a lot harder to break.</p>
+    </header>
+
+    <article>
+      <p class="first">A tester imported her whole Libby history - a couple hundred books - and watched it stop cold around the twentieth. For an app whose entire pitch is <em>every book that's passed through your reading life</em>, a half-finished import isn't a small annoyance. It's the app failing at the one thing it promised. So we dug in. What we found was equal parts embarrassing and instructive.</p>
+
+      <h2>The strange part: it used to work</h2>
+      <p>Two of the biggest imports we'd ever seen had gone through without a hiccup - one reader brought in 243 books, another 394. No stalls, no errors. So when this one died at twenty, the first question wasn't "how do we fix it." It was "what changed?" Because something clearly had.</p>
+      <p>The answer: we had. The day before.</p>
+
+      <h2>A bug we shipped to ourselves</h2>
+      <p>We'd just rolled out a change to how a book remembers <em>where it came from</em> - whether you bought it, borrowed it, or pulled it from the library. A good change. But it quietly added a new piece of information to every imported book: the name of the library the loan came from.</p>
+      <p>Here's the catch. Libby's export doesn't always include the library name - for some borrows, that field comes through empty. And our database has a strict rule: it would rather reject an entire record than store an empty value. So every book missing a library name was getting bounced at the door.</p>
+
+      <h2>And one bad book sank the whole batch</h2>
+      <p>On its own, that would've been a contained problem - skip the handful of bad ones, keep the rest. But the importer had a single safety net wrapped around the <em>entire</em> run. So the first book the database rejected didn't just fail itself; it threw the whole import off the rails. Everything after it stopped.</p>
+      <blockquote>It wasn't twenty books that broke the import. It was one - and the way we'd built things, one was enough.</blockquote>
+      <p>That's the "stops at twenty." Book twenty-one was simply the first one in her export with no library name attached. The two big imports that worked? They came in weeks earlier, before any of this new machinery existed. They beat the bug by the calendar.</p>
+
+      <h2>While we were in there: talking faster than the phone could listen</h2>
+      <p>Chasing the first problem turned up a second, quieter one. When the app saves a couple hundred books, it had been firing them off back-to-back, as fast as it could. A phone can only hold so many of those little conversations open at once, and past a point it starts dropping them. On a fast connection you'd never notice. On a slow one, it was one more way for a big import to fall over.</p>
+
+      <h2>How we fixed it - for good, not just this once</h2>
+      <p>We didn't want to patch the one symptom and move on. We wanted the importer to stop being fragile. Four changes:</p>
+      <ul>
+        <li><strong>Scrub the data first.</strong> Before anything is sent, we now strip out empty values at every level of every record - so a missing library name (or any field we add in the future) can never poison a write again.</li>
+        <li><strong>Give every book its own safety net.</strong> Each book imports on its own now. If one fails, it fails alone - the rest keep going.</li>
+        <li><strong>Add a breath between saves.</strong> The app pauses for a fraction of a second every few books, so the phone is never overwhelmed.</li>
+        <li><strong>Retry what's left, not everything.</strong> If a few books still don't make it - a flaky moment, a dropped connection - you get a "Retry the remaining items" button. You never start a 300-book import over from scratch.</li>
+      </ul>
+
+      <figure class="shot">
+        <img src="img/note-import-recovery.png" alt="The import recovery screen: an 'Import Notice' telling you a few items could not be saved, with a 'Retry the remaining items' button and a 'View finished library' option." />
+        <figcaption>If anything slips through, you retry only what's left - the books that made it are already saved.</figcaption>
+      </figure>
+
+      <h2>The principle underneath</h2>
+      <p>The rule we want every corner of myShelfie to follow: it should never make you redo work, and it should be honest about what it couldn't do. A partial import that saves your progress and tells you exactly what's left will always beat an all-or-nothing one that quietly gives up at twenty.</p>
+      <p>To the reader who caught this - thank you. The big imports that sailed through had us convinced this corner was solid. It took a fresh one to show us we'd cracked it the day before. That's exactly why you're here, and exactly why it matters.</p>
+
+      <p class="signoff">-Andy</p>
+
+      <div class="post-foot-nav">
+        <a href="notes.html">&larr; Marginalia</a>
+      </div>
+    </article>
+
+    <footer>
+      <span class="brand-foot">myShelfie</span>
+      <span class="footlinks"><a href="notes.html">Marginalia</a><a href="guide.html">Guide</a><a href="import.html">Importing</a><a href="privacy.html">Privacy</a></span>
+      <span>Marginalia</span>
+    </footer>
+  </div>
+</body>
+</html>
